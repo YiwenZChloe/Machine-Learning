@@ -1,0 +1,44 @@
+2.1 Simple Linear Regression (1 feature & 1 numeric value to predict – linear rs)
+2.1.1 Import Libraries
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+2.1.2 Import dataset
+dataset = pd.read_csv('Salary_Data.csv')
+X = dataset.iloc[:, :-1].values
+y = dataset.iloc[:, -1].values
+2.1.3 Split dataset into Training set and Test set
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 1/3, random_state = 0)
+2.1.4 Train Simple Linear Regression model on Training set
+from sklearn.linear_model import LinearRegression
+regressor = LinearRegression()
+regressor.fit(X_train, y_train)
+2.1.5 Predict Test set results
+y_pred = regressor.predict(X_test)
+2.1.6 Visualise the Training set results (Visualisation only for 2D i.e. 1 independent variable)
+plt.scatter(X_train, y_train, color = 'red')
+plt.plot(X_train, regressor.predict(X_train), color = 'blue')
+plt.title('Salary vs Experience (Training set)')
+plt.xlabel('Years of Experience')
+plt.ylabel('Salary')
+plt.show()
+2.1.7 Visualise the Test set results
+plt.scatter(X_test, y_test, color = 'red')
+plt.plot(X_train, regressor.predict(X_train), color = 'blue')
+plt.title('Salary vs Experience (Test set)')
+plt.xlabel('Years of Experience')
+plt.ylabel('Salary')
+plt.show()
+
+(KIV) Calculate the Mean Absolute Error, Mean Squared Error, Root Mean Squared Error and Coeffecient
+from sklearn import metrics
+print('MAE:', metrics.mean_absolute_error(y_test, y_predict))
+print('MSE:', metrics.mean_squared_error(y_test, y_predict))
+print('RMSE:', np.sqrt(metrics.mean_squared_error(y_test, y_predict)))
+print(regressor.coef_)
+print(regressor.intercept_)
+
+(IMPT) EVALUATE AND CHOOSE BEST MODEL FOR DATA
+from sklearn.metrics import r2_score
+r2_score(y_test, y_pred)
