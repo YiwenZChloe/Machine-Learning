@@ -1,2 +1,2 @@
-# Machine Learning
-# Machine Learning Templates (Python)
+# Machine Learning (Python)
+# Machine Learning Templates for Python
